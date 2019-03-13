@@ -31,14 +31,6 @@ defmodule Jetruby.Github do
   @spec fetch() :: list(struct())
   def fetch do
     Api.fetch_all_repo()
-    |> Enum.map(fn item ->
-      %{
-        repo_id: item["id"],
-        name: item["full_name"],
-        stars: item["stargazers_count"],
-        data: item
-      }
-    end)
     |> create_repositories()
   end
 
